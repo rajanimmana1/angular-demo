@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit{
       "productYear":2020,
       "productCode" : "#1c-b",
        "productTitle" : "first",
-       "ProductRating" : 4.2,
+       "ProductRating" : 4.3,
        "imageUrl" : "https://images.app.goo.gl/Wv4EXUnFnURFCD9P8" 
     },
     {
@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit{
       "productYear":2021,
       "productCode" : "#2c-b",
       "productTitle" : "second",
-      "ProductRating" : 4.8,
+      "ProductRating" : 4.7,
        "imageUrl" : "https://images.app.goo.gl/U2Mu8nkcG61czrCH7"
     }
   ]
@@ -51,7 +51,9 @@ export class ProductListComponent implements OnInit{
     this.listFilter='car';
 
   }
- 
+  onRightClicked(message:string):void{
+    this.pageTitle = 'Product List ' + message;
+  }
 
   performFilter(filterBy:string):Iproduct[]{ 
     filterBy = filterBy.toLocaleLowerCase();
