@@ -10,7 +10,7 @@ import { ProductService } from './product.service';
 export class ProductListComponent implements OnInit{
   pageTitle: string = "Product List";
   showImage:boolean = false;
-  _listFilter:string; 
+  _listFilter:string;  
 
   get listFilter():string{
     return this._listFilter;
