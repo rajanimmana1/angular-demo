@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Iproduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'my-product',
@@ -9,7 +10,7 @@ import { Iproduct } from './product';
 export class ProductListComponent implements OnInit{
   pageTitle: string = "Product List";
   showImage:boolean = false;
-  _listFilter:string;
+  _listFilter:string; 
 
   get listFilter():string{
     return this._listFilter;
@@ -23,32 +24,11 @@ export class ProductListComponent implements OnInit{
   filterProducts:Iproduct[];
   imageWidth:number = 50;
   imageMargin:number = 2; 
-  products:Iproduct[]= [
-    {
-      "productId" : 1,
-      "productName": "car",
-      "productCost":52.35,
-      "productYear":2020,
-      "productCode" : "#1c-b",
-       "productTitle" : "first",
-       "ProductRating" : 4.3,
-       "imageUrl" : "https://images.app.goo.gl/Wv4EXUnFnURFCD9P8" 
-    },
-    {
-      "productId" : 2,
-      "productName": "bike",
-      "productCost":35.76,
-      "productYear":2021,
-      "productCode" : "#2c-b",
-      "productTitle" : "second",
-      "ProductRating" : 4.7,
-       "imageUrl" : "https://images.app.goo.gl/U2Mu8nkcG61czrCH7"
-    }
-  ]
+  products:Iproduct[]= []
 
-  constructor(){
-    this.filterProducts = this.products;
-    this.listFilter='car';
+  constructor(private productService: ProductService){
+   
+   
 
   }
   onRightClicked(message:string):void{
@@ -65,6 +45,7 @@ export class ProductListComponent implements OnInit{
     this.showImage = !this.showImage;
   }
   ngOnInit():void{
-    console.log('Oninit');
+    this.products = this.productService.getProducts();
+     this.filterProducts = this.products;
   }
 } 
